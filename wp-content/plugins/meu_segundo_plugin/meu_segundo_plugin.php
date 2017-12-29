@@ -31,6 +31,9 @@
 
         //Adiciona nova action
         add_action('welcome_panel', array($this, 'welcome_panel'));
+
+        //Registrando style.css
+        add_action('admin_enqueue_scripts', array($this, 'addCss'));
     }
 
     public function welcome_panel()
@@ -49,6 +52,12 @@
             </div>
         </div>
         ';
+    }
+
+    public function addCss()
+    {
+        wp_register_style( 'style', plugin_dir_url( __FILE__ ).'css/style.css');
+        wp_enqueue_style( 'style');
     }
 }
 
