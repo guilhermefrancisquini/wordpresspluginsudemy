@@ -16,3 +16,20 @@
  }
 
  add_action( 'wp_footer', 'altera_rodape' );
+
+ add_action( 'init', 'my_user_check' );
+
+ function my_user_check()
+ {
+     if( is_user_logged_in())
+     {
+         //echo '<script>alert(1)</script>';
+     }
+ }
+
+add_action( 'the_title', 'my_filtered_title', 10, 2 );
+function my_filtered_title( $value, $id)
+{
+	$value = '[ **** '. $value .' ****]';
+	return $value;
+}
