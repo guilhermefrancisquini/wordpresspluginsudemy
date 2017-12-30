@@ -35,15 +35,22 @@
 
         //Registrando style.css
         add_action('admin_enqueue_scripts', array($this, 'addCss'));
+
+        add_action( 'init', array($this, 'meuSegundoPluginLoadTextDomain') );
+    }
+
+    public function meuSegundoPluginLoadTextDomain()
+    {
+        load_plugin_textdomain( self::TEXT_DOMAIN, false, dirname( plugin_basename( __FILE__ )) );
     }
 
     public function welcome_panel()
     {
         echo '
         <div class="welcome-panel-content">
-            <h3>' . _e('Seja Bem vindo ao Painel Administrativo', TEXT_DOMAIN) . '</h3>
-            <p>' . _e('Siga-nos nas redes sociais', TEXT_DOMAIN) . '</p>
-            <p>' . _e('Olá', TEXT_DOMAIN) . '</p>
+            <h3>' . _e('Seja Bem vindo ao Painel Administrativo', 'meu_segundo_plugin') . '</h3>
+            <p>' . _e('Siga-nos nas redes sociais', 'meu_segundo_plugin') . '</p>
+            <p>' . _e('Olá', 'meu_segundo_plugin') . '</p>
             <div id="icons">
                 <a href="#" target="_blank">
                     <img src="http://wordpress.dev/wp-content/uploads/2017/12/1474968161-youtube-circle-color.png">
