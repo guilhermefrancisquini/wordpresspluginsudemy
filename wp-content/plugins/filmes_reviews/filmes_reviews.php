@@ -42,7 +42,7 @@ class FilmesReviews
                 'author',
                 'revisions',
                 'thumbnail',
-                'custom-filds',
+                'custom-fields',
             ),
             'public' => TRUE,
             'menu_position' => 3,

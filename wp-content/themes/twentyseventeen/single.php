@@ -83,6 +83,8 @@ get_header(); ?>
 			endwhile; // End of the loop.
 			?>
 
+			<?= the_meta(); ?>
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 	<?php get_sidebar(); ?>
