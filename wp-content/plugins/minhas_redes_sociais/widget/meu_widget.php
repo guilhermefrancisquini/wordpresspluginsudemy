@@ -20,10 +20,10 @@
             if($title)
             {
                 echo $before_widget . $title . $after_widget;
-                echo "<a href='$urlFacebook'><img src='plugin_dir_url(__FILE__)./images/facebook.png' alt='facebook'/></a>";
-                echo "<a href='$urlTwitter'><img src='plugin_dir_url(__FILE__)./images/twitter.png' alt='twitter'/></a>";
-                echo "<a href='$urlInstagram'><img src='plugin_dir_url(__FILE__)./images/instagram.png' alt='instagram'/></a>";
-                echo "<a href='$urlYoutube'><img src='plugin_dir_url(__FILE__)./images/youtube.png' alt='youtube'/></a>";
+                echo "<a href='$urlFacebook'><img src='".plugin_dir_url(__FILE__).'images/facebook.png'."' alt='facebook'/></a>";
+                echo "<a href='$urlTwitter'><img src='".plugin_dir_url(__FILE__).'images/twitter.png'."' alt='twitter'/></a>";
+                echo "<a href='$urlInstagram'><img src='".plugin_dir_url(__FILE__).'images/instagram.png'."' alt='instagram'/></a>";
+                echo "<a href='$urlYoutube'><img src='".plugin_dir_url(__FILE__).'images/youtube.png'."' alt='youtube'/></a>";
             }
             echo $after_widget;
         }
@@ -31,6 +31,7 @@
         public function update($new_instance, $old_instance)
         {
             $instance = $old_instance;
+            $instance['title'] = wp_strip_all_tags( $new_instance['title'] );
             $instance['urlFacebook'] = wp_strip_all_tags( $new_instance['urlFacebook'] );
             $instance['urlTwitter'] = wp_strip_all_tags( $new_instance['urlTwitter'] );
             $instance['urlInstagram'] = wp_strip_all_tags( $new_instance['urlInstagram'] );
