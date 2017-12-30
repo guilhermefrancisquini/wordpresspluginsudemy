@@ -15,6 +15,7 @@
  class SegundoPlugin
  {
     private static $instance;
+    const TEXT_DOMAIN = 'meu_segundo_plugin';
     
     public static function getInstance()
     {
@@ -40,8 +41,9 @@
     {
         echo '
         <div class="welcome-panel-content">
-            <h3> Seja Bem vindo ao Painel Administrativo</h3>
-            <p> Siga-nos nas redes sociais </p>
+            <h3>' . _e('Seja Bem vindo ao Painel Administrativo', TEXT_DOMAIN) . '</h3>
+            <p>' . _e('Siga-nos nas redes sociais', TEXT_DOMAIN) . '</p>
+            <p>' . _e('Olá', TEXT_DOMAIN) . '</p>
             <div id="icons">
                 <a href="#" target="_blank">
                     <img src="http://wordpress.dev/wp-content/uploads/2017/12/1474968161-youtube-circle-color.png">
