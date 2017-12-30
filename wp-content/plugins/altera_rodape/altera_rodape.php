@@ -27,7 +27,7 @@
      }
  }
 
-add_action( 'the_title', 'my_filtered_title', 10, 2 );
+//add_action( 'the_title', 'my_filtered_title', 10, 2 );
 function my_filtered_title( $value, $id)
 {
 	$value = '[ **** '. $value .' ****]';

@@ -32,6 +32,10 @@ class FilmesReviews
         add_action( 'init', 'FilmesReviews::registerTaxonomies' );
         add_action( 'tgmpa_register', array($this, 'check_required_plugins') );
         add_filter( 'rwmb_meta_boxes', array($this, 'metaboxCustomFields') );
+
+        // Template customizado
+        add_action( 'template_include', array($this, 'addCptTemplate') );
+        add_action( 'wp_enqueue_scripts', array($this, 'addStyleScripts') );
     }
 
     public static function register_post_type()
@@ -138,7 +142,7 @@ class FilmesReviews
                 array(
                     'name' => __('Ano de lançamento', 'filmes_reviews'),
                     'desc' => __('Ano que o filme foi lançado', 'filmes_reviews'),
-                    'id' => self::FIELD_PREFIX.'fime_ano',
+                    'id' => self::FIELD_PREFIX.'filme_ano',
                     'type' => 'number',
                     'std' => date('Y'),
                     'min' => '1880',
@@ -146,6 +150,7 @@ class FilmesReviews
                 array(
                     'name' => __('Diretor', 'filmes_reviews'),
                     'desc' => __('Quem dirigiu o filme', 'filmes_reviews'),
+                    'id' => self::FIELD_PREFIX.'filme_diretor', 
                     'type' => 'text',
                     'std' => '',
                 ),
@@ -190,6 +195,26 @@ class FilmesReviews
         );
 
         return $metabox;
+    }
+
+    public function addCptTemplate($template)
+    {
+        if(is_singular( 'filmes_reviews' ))
+        {
+            if(file_exists(get_stylesheet_directory().'view/single_filme_review.php'))
+            {
+                return get_stylesheet_directory().'view/single_filme_review.php';
+            }
+
+            return plugin_dir_path( __FILE__ ).'view/single_filme_review.php';
+        }
+
+        return $template;
+    }
+
+    public function addStyleScripts()
+    {
+        wp_enqueue_style( 'filme_review_style', plugin_dir_url( __FILE__ ).'css/filme_review.css' );
     }
 
     public static function activate()
