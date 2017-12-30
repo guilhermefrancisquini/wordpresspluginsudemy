@@ -9,7 +9,9 @@ Author URI: http://meusite.com.br
 Text Domain: meu-twitter
 License: GPL2
 */
-
+$url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https://' : 'http://';
+$url .= $_SERVER['SERVER_NAME'];
+if(!defined('ABSPATH')) header('Location:'. $url); //segurança plugin
 class MeuTwitter {
     private static $instance;
 
